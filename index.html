@@ -35,14 +35,15 @@
                 </div>
                 <div class="amount-box withdraw">
                     <h4>Withdraw</h4>
-                    <h1 class="dollar">00</h1>
+                    <h1 id="withdraw-amount" class="dollar">00</h1>
                 </div>
                 <div class="amount-box balance">
                     <h4>Balance</h4>
-                    <h1 class="dollar">1240</h1>
+                    <h1 id="balance" class="dollar">1240</h1>
                 </div>
             </div>
         </div>
+        <h1 id="direction-text">Transit Your Money</h1>
         <div id="transition-submit-area">
             <div class="transition-submit-box-container">
                 <div class="transition-submit-box">
@@ -53,9 +54,9 @@
                 </div>
                 <div class="transition-submit-box">
                     <h2>Withdraw</h2>
-                    <input class="user-input depo-with" type="text" placeholder="$amount you want to withdraw">
+                    <input id="withdraw-input" class="user-input depo-with" type="text" placeholder="$amount you want to withdraw">
                     <br>
-                    <a class="btn-primary">Deposit</a>
+                    <a id="withdraw-submit" class="btn-primary">Deposit</a>
                 </div>
             </div>
         </div>
@@ -72,16 +73,59 @@
         document.getElementById("transaction-private-area").style.display = "block";
     })
 
+
+
+//function 
+function actionHandler(input) {
+            var userInput = document.getElementById(input).value;
+            userInput = +userInput;
+            return userInput;
+    }
+    function makeTotal(id, input) {
+        var currentAmount = document.getElementById(id).innerText;
+        currentAmount = +currentAmount;
+        if (input > 0 && input != " " && input != null) {
+            var total = currentAmount + input;
+            document.getElementById(id).innerText = total; 
+        }
+        else{
+            alert("What the fuck dude?");
+        }
+        }
+
+
+
     //deposit Event Handler
+
+
     var depositBtn = document.getElementById("deposit-amount-submit");
     depositBtn.addEventListener("click", function(){
-        var depositValue = document.getElementById("deposit-amount").value;
-        depositValue = +depositValue;
-        var totalDeposit = document.getElementById("total-deposit").innerText;
-        totalDeposit = +totalDeposit;
+
+        var depositValue = actionHandler("deposit-amount");
+        makeTotal("total-deposit", depositValue);
+        document.getElementById("deposit-amount").value = "";
+        makeTotal("balance", depositValue);
+    })
+
+    //withdraw Event Handler
+    
+    var withdrawBtn = document.getElementById("withdraw-submit");
+    withdrawBtn.addEventListener("click", function(){
+        var withdrawInput = actionHandler("withdraw-input");
+        makeTotal("withdraw-amount", withdrawInput);
         
-        var total = totalDeposit + depositValue;
-        totalDeposit = total;
+        document.getElementById("withdraw-input").value = "";  
+
+        var balance = document.getElementById("balance").innerText;
+        balance = +balance;
+        alert("are you sure?")
+        if (withdrawInput > 0 && withdrawInput != " " && withdrawInput != null) {
+            var totalBalance = balance - withdrawInput;
+            document.getElementById("balance").innerText = totalBalance;   
+        }
+        else{
+            alert("Not that easy bro! You think I am an Asshole?")
+        }
         
     })
  </script>

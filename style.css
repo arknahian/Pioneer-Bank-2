@@ -93,3 +93,40 @@ input[type="email"], input[type="password"], input[type="text"]{
 .depo-with{
      padding: 15px;
 }
+#direction-text{
+    text-align: center;
+    margin-top: 10px;
+    display: none;
+}
+
+@media (max-width: 1304px) {
+    .amount-box-container{
+        flex-direction: column;
+        align-items: center;
+    }
+    .amount-box{
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+    }
+}
+@media (max-width: 544px) {
+    .transition-submit-box-container{
+        flex-direction: column;
+        align-items: center;
+    }
+    .transition-submit-box{
+        width: 100%;
+        margin-top: 10px;
+    }
+    #direction-text{
+        display: block;
+    }
+}
+
+@media (max-width: 1024px) {
+    #transition-submit-area{
+        margin-top: -71px;
+        padding-bottom: 30px;
+    }
+}
