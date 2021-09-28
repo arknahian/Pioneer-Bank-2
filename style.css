@@ -130,3 +130,11 @@ input[type="email"], input[type="password"], input[type="text"]{
         padding-bottom: 30px;
     }
 }
+@media (max-width: 494px) {
+    .log-in-area{
+        display: inherit;
+    }
+    .log-in-content{
+        width: 100%;
+    }
+}
